@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- ================= META & SEO ================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MECA AUTO | Garage automobile – Mécanique & Entretien</title>
+    <meta name="description" content="MECA AUTO, garage automobile spécialisé en mécanique, entretien et réparation automobile.">
+
+    <!-- SEO LOCAL -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoRepair",
+      "name": "MECA AUTO",
+      "telephone": "0767970778",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "FR"
+      },
+      "openingHours": "Mo-Fr 09:00-12:00,13:00-18:00"
+    }
+    </script>
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+    <!-- ================= CSS ================= -->
+    <style>
+        /* RESET GLOBAL */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #0e0e0e;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #000;
+            border-bottom: 3px solid #d10000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+        }
+
+        .logo span { color: #d10000; }
+
+        nav a {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover { color: #d10000; }
+
+        /* ================= HERO ================= */
+        .hero {
+            height: 80vh;
+            background:
+                linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
+                url("images/hero.jpg") center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 42px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #d10000;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 70px 20px;
+            text-align: center;
+        }
+
+        .dark { background: #1c1c1c; }
+
+        /* ================= SERVICES ================= */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #000;
+            padding: 30px;
+            border-top: 4px solid #d10000;
+        }
+
+        /* ================= SLIDER AVANT / APRÈS ================= */
+        .slider {
+            position: relative;
+            max-width: 900px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            display: flex;
+        }
+
+        .slide img {
+            width: 50%;
+            object-fit: cover;
+        }
+
+        .slider button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            border: none;
+            font-size: 24px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        /* ================= AVIS CLIENTS ================= */
+        .reviews-slider {
+            max-width: 700px;
+            margin: 40px auto;
+            overflow: hidden;
+        }
+
+        .reviews-track {
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+
+        .review-slide {
+            min-width: 100%;
+            background: #000;
+            padding: 35px;
+            border-top: 4px solid #d10000;
+        }
+
+        .review-text {
+            font-style: italic;
+            font-size: 18px;
+        }
+
+        .review-author {
+            display: block;
+            margin-top: 15px;
+            color: #d10000;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #000;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* ================= RESPONSIVE MOBILE ================= */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 30px; }
+            .slide { flex-direction: column; }
+            .slide img { width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">MECA <span>AUTO</span></div>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#gallery">Galerie</a>
+            <a href="#reviews">Avis</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div>
+        <h1>Garage automobile<br>de confiance</h1>
+        <a href="#contact" class="btn">Nous contacter</a>
+    </div>
+</section>
+
+<section id="services" class="dark">
+    <h2>Nos services</h2>
+    <div class="grid">
+        <div class="card">Mécanique générale</div>
+        <div class="card">Entretien & révision</div>
+        <div class="card">Climatisation</div>
+        <div class="card">Lavage automobile</div>
+    </div>
+</section>
+
+<!-- ================= GALERIE AVANT / APRÈS ================= -->
+<section id="gallery">
+    <h2>Avant / Après</h2>
+
+    <div class="slider">
+        <div class="slides" id="slides">
+
+            <!-- AJOUTER DES PAIRES AVANT/APRÈS ICI -->
+            <div class="slide">
+                <img src="images/avant1.jpg" loading="lazy">
+                <img src="images/apres1.jpg" loading="lazy">
+            </div>
+
+            <div class="slide">
+                <img src="images/avant2.jpg" loading="lazy">
+                <img src="images/apres2.jpg" loading="lazy">
+            </div>
+
+        </div>
+
+        <button class="prev" onclick="prevSlide()">❮</button>
+        <button class="next" onclick="nextSlide()">❯</button>
+    </div>
+</section>
+
+<!-- ================= AVIS CLIENTS ================= -->
+<section id="reviews" class="dark">
+    <h2>Avis clients</h2>
+
+    <div class="reviews-slider">
+        <div class="reviews-track" id="reviewsTrack">
+
+            <!-- AJOUTER DES AVIS ICI (ILLIMITÉ) -->
+            <div class="review-slide">
+                <p class="review-text">“Service rapide et très professionnel.”</p>
+                <span class="review-author">– Jean</span>
+            </div>
+
+            <div class="review-slide">
+                <p class="review-text">“Garage sérieux, travail soigné.”</p>
+                <span class="review-author">– Sophie</span>
+            </div>
+
+            <div class="review-slide">
+                <p class="review-text">“Excellent rapport qualité / prix.”</p>
+                <span class="review-author">– Karim</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="dark">
+    <h2>Contact</h2>
+    <p>📞 07 67 97 07 78</p>
+    <p>🕒 Lundi – Vendredi : 9h–12h / 13h–18h</p>
+</section>
+
+<footer>
+    © 2026 MECA AUTO – Tous droits réservés
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+    /*
+        SLIDER AVANT / APRÈS
+        -------------------
+        - Automatique
+        - Illimité
+        - Ajouter/supprimer des slides = OK
+    */
+    let currentIndex = 0;
+    const slides = document.getElementById("slides");
+    const totalSlides = slides.children.length;
+
+    function updateSlider() {
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlider();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+
+    setInterval(nextSlide, 4000); // vitesse slider galerie
+
+
+    /*
+        SLIDER AVIS CLIENTS
+        ------------------
+        - Même logique que la galerie
+        - Avis illimités
+        - Modifier uniquement le HTML
+    */
+    let reviewIndex = 0;
+    const reviewsTrack = document.getElementById("reviewsTrack");
+    const totalReviews = reviewsTrack.children.length;
+
+    function updateReviews() {
+        reviewsTrack.style.transform = `translateX(-${reviewIndex * 100}%)`;
+    }
+
+    function nextReview() {
+        reviewIndex = (reviewIndex + 1) % totalReviews;
+        updateReviews();
+    }
+
+    setInterval(nextReview, 5000); // vitesse slider avis
+</script>
+
+</body>
+</html>
