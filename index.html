@@ -1,366 +1,809 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- ================= META & SEO ================= -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>MECA AUTO | Garage automobile – Mécanique & Entretien</title>
-    <meta name="description" content="MECA AUTO, garage automobile spécialisé en mécanique, entretien et réparation automobile.">
-
-    <!-- SEO LOCAL -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "AutoRepair",
-      "name": "MECA AUTO",
-      "telephone": "0767970778",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "FR"
-      },
-      "openingHours": "Mo-Fr 09:00-12:00,13:00-18:00"
-    }
-    </script>
-
-    <!-- FONTS -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-
-    <!-- ================= CSS ================= -->
+    <title>Meca Auto30 Saint-Dionisy - Votre Expert Mécanique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* RESET GLOBAL */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: #0e0e0e;
-            color: #fff;
-            line-height: 1.6;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
         }
-
-        header {
-            background: #000;
-            border-bottom: 3px solid #d10000;
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
         }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+        
+        .service-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
         }
-
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
-
-        .logo span { color: #d10000; }
-
-        nav a {
-            color: #fff;
-            margin-left: 20px;
-            text-decoration: none;
+        
+        .service-icon {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            transition: all 0.3s ease;
         }
-
-        nav a:hover { color: #d10000; }
-
-        /* ================= HERO ================= */
-        .hero {
-            height: 80vh;
-            background:
-                linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
-                url("images/hero.jpg") center/cover no-repeat;
+        
+        .service-card:hover .service-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.2);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(239, 68, 68, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 42px;
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
         }
-
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background: #d10000;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
+        
+        .scroll-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
-
-        section {
-            padding: 70px 20px;
-            text-align: center;
+        
+        .scroll-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        .dark { background: #1c1c1c; }
-
-        /* ================= SERVICES ================= */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+        
+        nav {
+            transition: all 0.3s ease;
         }
-
-        .card {
-            background: #000;
-            padding: 30px;
-            border-top: 4px solid #d10000;
+        
+        nav.scrolled {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
-        /* ================= SLIDER AVANT / APRÈS ================= */
-        .slider {
-            position: relative;
-            max-width: 900px;
-            margin: 40px auto;
+        
+        .mobile-menu {
+            max-height: 0;
             overflow: hidden;
-            border-radius: 6px;
+            transition: max-height 0.3s ease;
         }
-
-        .slides {
-            display: flex;
-            transition: transform 0.6s ease;
-        }
-
-        .slide {
-            min-width: 100%;
-            display: flex;
-        }
-
-        .slide img {
-            width: 50%;
-            object-fit: cover;
-        }
-
-        .slider button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.6);
-            color: #fff;
-            border: none;
-            font-size: 24px;
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .prev { left: 10px; }
-        .next { right: 10px; }
-
-        /* ================= AVIS CLIENTS ================= */
-        .reviews-slider {
-            max-width: 700px;
-            margin: 40px auto;
-            overflow: hidden;
-        }
-
-        .reviews-track {
-            display: flex;
-            transition: transform 0.6s ease;
-        }
-
-        .review-slide {
-            min-width: 100%;
-            background: #000;
-            padding: 35px;
-            border-top: 4px solid #d10000;
-        }
-
-        .review-text {
-            font-style: italic;
-            font-size: 18px;
-        }
-
-        .review-author {
-            display: block;
-            margin-top: 15px;
-            color: #d10000;
-            font-weight: bold;
-        }
-
-        footer {
-            background: #000;
-            padding: 20px;
-            font-size: 14px;
-        }
-
-        /* ================= RESPONSIVE MOBILE ================= */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 30px; }
-            .slide { flex-direction: column; }
-            .slide img { width: 100%; }
+        
+        .mobile-menu.active {
+            max-height: 500px;
         }
     </style>
 </head>
-
-<body>
-
-<header>
-    <div class="container">
-        <div class="logo">MECA <span>AUTO</span></div>
-        <nav>
-            <a href="#services">Services</a>
-            <a href="#gallery">Galerie</a>
-            <a href="#reviews">Avis</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </div>
-</header>
-
-<section class="hero">
-    <div>
-        <h1>Garage automobile<br>de confiance</h1>
-        <a href="#contact" class="btn">Nous contacter</a>
-    </div>
-</section>
-
-<section id="services" class="dark">
-    <h2>Nos services</h2>
-    <div class="grid">
-        <div class="card">Entretien & Révision Vidange, filtres, bougies, climatisation, contrôle complet selon le carnet constructeur.</div>
-        <div class="card">Freinage & Sécurité Disques, plaquettes, liquide de frein, amortisseurs et géométrie.</div>
-        <div class="card">Pneus & Jantes Montage, équilibrage, réparation, pneus été/hiver/4 saisons.</div>
-        <div class="card">Diagnostic électronique Lecture défauts OBD, effacement codes, batterie, alternateur, capteurs.</div>
-    </div>
-
-    <div class="grid">
-        <div class="card">Mécanique générale Embrayage, distribution, refroidissement, échappement, fuites…</div>
-        <div class="card">Pré-contrôle technique Inspection, corrections, préparation au passage pour éviter la contre-visite.</div>
-
-    </div>
-</section>
-
-<!-- ================= GALERIE AVANT / APRÈS ================= -->
-<section id="gallery">
-    <h2>Avant / Après</h2>
-
-    <div class="slider">
-        <div class="slides" id="slides">
-
-            <!-- AJOUTER DES PAIRES AVANT/APRÈS ICI -->
-            <div class="slide">
-                <img src="images/avant1.jpg" loading="lazy">
-                <img src="images/apres1.jpg" loading="lazy">
+<body class="bg-gray-50">
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-4" id="navbar">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="bg-red-600 p-2 rounded-lg">
+                        <i class="fas fa-wrench text-white text-2xl"></i>
+                    </div>
+                    <span class="text-white text-2xl font-bold">Meca Auto30 Saint-Dionisy</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="text-white hover:text-red-500 transition font-medium">Accueil</a>
+                    <a href="#services" class="text-white hover:text-red-500 transition font-medium">Services</a>
+                    <a href="#apropos" class="text-white hover:text-red-500 transition font-medium">À Propos</a>
+                    <a href="#galerie" class="text-white hover:text-red-500 transition font-medium">Galerie</a>
+                    <a href="#temoignages" class="text-white hover:text-red-500 transition font-medium">Témoignages</a>
+                    <a href="#contact" class="text-white hover:text-red-500 transition font-medium">Contact</a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <a href="tel:0123456789" class="btn-primary text-white px-6 py-2 rounded-full font-semibold inline-block">
+                        <i class="fas fa-phone mr-2"></i>01 23 45 67 89
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white text-2xl" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-
-            <div class="slide">
-                <img src="images/avant2.jpg" loading="lazy">
-                <img src="images/apres2.jpg" loading="lazy">
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu md:hidden" id="mobile-menu">
+                <div class="flex flex-col space-y-4 mt-4">
+                    <a href="#accueil" class="text-white hover:text-red-500 transition font-medium">Accueil</a>
+                    <a href="#services" class="text-white hover:text-red-500 transition font-medium">Services</a>
+                    <a href="#apropos" class="text-white hover:text-red-500 transition font-medium">À Propos</a>
+                    <a href="#galerie" class="text-white hover:text-red-500 transition font-medium">Galerie</a>
+                    <a href="#temoignages" class="text-white hover:text-red-500 transition font-medium">Témoignages</a>
+                    <a href="#contact" class="text-white hover:text-red-500 transition font-medium">Contact</a>
+                    <a href="tel:0123456789" class="btn-primary text-white px-6 py-2 rounded-full font-semibold text-center">
+                        <i class="fas fa-phone mr-2"></i>01 23 45 67 89
+                    </a>
+                </div>
             </div>
-
         </div>
-
-        <button class="prev" onclick="prevSlide()">❮</button>
-        <button class="next" onclick="nextSlide()">❯</button>
-    </div>
-</section>
-
-<!-- ================= AVIS CLIENTS ================= -->
-<section id="reviews" class="dark">
-    <h2>Avis clients</h2>
-    <h2>5/5⭐</h2>
-
-    <div class="reviews-slider">
-        <div class="reviews-track" id="reviewsTrack">
-
-            <!-- AJOUTER DES AVIS ICI (ILLIMITÉ) -->
-             <div class="review-slide">
-                <p class="review-text">“Mon SAUVEUR !Travail rapide, hyper sérieux, tarifs hors compétition. J’ai déménagé à plus d’une heure de route mais JAMAIS je ne changerai de garagiste! Ma 207 a 320000km a de beau jour devant elle grâce à lui ! Je le recommande a absolument tout mon entourage , c’est un vrai bosseur comme on en voit plus beaucoup !”</p>
-                <span class="review-author">– Manon C ⭐⭐⭐⭐⭐</span>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="accueil" class="hero-gradient pt-32 pb-20">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-white scroll-fade-in">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                        Votre Véhicule Entre de Bonnes Mains
+                    </h1>
+                    <p class="text-xl mb-8 text-gray-300">
+                        Expert en mécanique automobile depuis plus de 20 ans. Nous offrons des services de qualité supérieure pour tous types de véhicules.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg inline-block">
+                            <i class="fas fa-calendar-check mr-2"></i>Une urgence sur votre vehicule ? Contactez nous !
+                        </a>
+                        <a href="#services" class="bg-white text-gray-800 px-8 py-4 rounded-full font-semibold text-lg inline-block hover:bg-gray-100 transition">
+                            Tout nos Services
+                        </a>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-8 mt-12">
+                        <div>
+                            <div class="stat-number">20+</div>
+                            <p class="text-gray-300">Années d'expérience</p>
+                        </div>
+                        <div>
+                            <div class="stat-number">5000+</div>
+                            <p class="text-gray-300">Clients satisfaits</p>
+                        </div>
+                        <div>
+                            <div class="stat-number">100%</div>
+                            <p class="text-gray-300">Taux de satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scroll-fade-in">
+                    <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800" alt="Garage" class="rounded-2xl shadow-lg w-full">
+                        
+                        <!-- Info Cards -->
+                        <div class="grid grid-cols-2 gap-4 mt-6">
+                            <div class="bg-white rounded-xl p-4 text-center">
+                                <i class="fas fa-clock text-red-600 text-2xl mb-2"></i>
+                                <p class="font-semibold text-gray-800">Ouvert 6j/7</p>
+                                <p class="text-sm text-gray-600">Lun-Sam 8h-19h</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-4 text-center">
+                                <i class="fas fa-certificate text-red-600 text-2xl mb-2"></i>
+                                <p class="font-semibold text-gray-800">Garantie</p>
+                                <p class="text-sm text-gray-600">12 mois pièces</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="review-slide">
-                <p class="review-text">“Excellent garage ! Travail sérieux, rapide et propre. Le mécanicien explique tout clairement, respecte les prix annoncés et donne de bons conseils. Confiance à 100 %, je recommande fortement.”</p>
-                <span class="review-author">– Mohamed H ⭐⭐⭐⭐⭐</span>
-            </div>
-
-            <div class="review-slide">
-                <p class="review-text">“Alek est un garagiste exceptionnel. Il trouve l’origine des pannes que même les concessionnaires ne trouvent pas. Très gentil et prix hors compétition..”</p>
-                <span class="review-author">– Fa B ⭐⭐⭐⭐⭐</span>
-            </div>
-
-            <div class="review-slide">
-                <p class="review-text">“Très professionnel rapide aimable et très agréable je recommande ce garage”</p>
-                <span class="review-author">– Dominique V ⭐⭐⭐⭐⭐</span>
-            </div>
-
-            <div class="review-slide">
-                <p class="review-text">“Rapidité efficacité je repars avec un véhicule nickel mécaniquement plus aucun bruit et rapport qualité/prix imbattable. Je recommande fortement 👌🏽👌🏽👌🏽”</p>
-                <span class="review-author">– Zakk Z ⭐⭐⭐⭐⭐</span>
-            </div>
-
         </div>
-    </div>
-</section>
-
-<section id="contact" class="dark">
-    <h2>Contact</h2>
-    <p>📞 07 67 97 07 78</p>
-    <p>🕒 Lundi – Vendredi : 9h–12h / 13h–18h</p>
-</section>
-
-<footer>
-    © 2026 MECA AUTO – Powered by www.Clickncode34.com - Tous droits réservés
-</footer>
-
-<!-- ================= JAVASCRIPT ================= -->
-<script>
-    /*
-        SLIDER AVANT / APRÈS
-        -------------------
-        - Automatique
-        - Illimité
-        - Ajouter/supprimer des slides = OK
-    */
-    let currentIndex = 0;
-    const slides = document.getElementById("slides");
-    const totalSlides = slides.children.length;
-
-    function updateSlider() {
-        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateSlider();
-    }
-
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        updateSlider();
-    }
-
-    setInterval(nextSlide, 4000); // vitesse slider galerie
-
-
-    /*
-        SLIDER AVIS CLIENTS
-        ------------------
-        - Même logique que la galerie
-    */
-    let reviewIndex = 0;
-    const reviewsTrack = document.getElementById("reviewsTrack");
-    const totalReviews = reviewsTrack.children.length;
-
-    function updateReviews() {
-        reviewsTrack.style.transform = `translateX(-${reviewIndex * 100}%)`;
-    }
-
-    function nextReview() {
-        reviewIndex = (reviewIndex + 1) % totalReviews;
-        updateReviews();
-    }
-
-    setInterval(nextReview, 5000); // vitesse slider avis
-</script>
-
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Nos Services</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Des prestations complètes pour l'entretien et la réparation de votre véhicule
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card rounded-2xl p-8 shadow-lg scroll-fade-in">
+                    <div class="service-icon w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-tools text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Mécanique Générale</h3>
+                    <p class="text-gray-600 mb-4">
+                        Réparation et entretien de tous les systèmes mécaniques de votre véhicule.
+                    </p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><i class="fas fa-check text-red-600 mr-2"></i>Révision complète</li>
+                        <li><i class="fas fa-check text-red-600 mr-2"></i>Vidange moteur</li>
+                        <li><i class="fas fa-check text-red-600 mr-2"></i>Distribution</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card rounded-2xl p-8 shadow-lg scroll-fade-in">
+                    <div class="service-icon w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-car text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Diagnostic Électronique</h3>
+                    <p class="text-gray-600 mb-4">
+                        Analyse complète des systèmes électroniques avec équipement de pointe.
+                    </p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><i class="fas fa-check text-red-600 mr-2"></i>Scan moteur</li>
+                        <li><i class="fas fa-check text-red-600 mr-2"></i>Valise diagnostic</li>
+                        <li><i class="fas fa-check text-red-600 mr-2"></i>Programmation</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card rounded-2xl p-8 shadow-lg scroll-fade-in">
+                    <div class="service-icon w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-oil-can text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Entretien Courant</h3>
+                    <p class="text-gray-600 mb-4">
+                        Maintenez votre véhicule en parfait état avec nos forfaits d'entretien.
+                    </p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><i class="fas fa-check text-red-600 mr-2"></i>Freins & plaquettes</li>
+                        <li><i class="fas fa-check text-red-600 mr-2"></i>Pneumatiques</li>
+                        <li><i class="fas fa-check text-red-600 mr-2"></i>Climatisation</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card rounded-2xl p-8 shadow-lg scroll-fade-in">
+                    <div class="service-icon w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-paint-brush text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Carrosserie</h3>
+                    <p class="text-gray-600 mb-4">
+                        Réparation et peinture pour redonner à votre voiture son éclat.
+                    </p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><i class="fas fa-check text-red-600 mr-2"></i>Débosselage</li>
+                        <li><i class="fas fa-check text-red-600 mr-2"></i>Peinture</li>
+                        <li><i class="fas fa-check text-red-600 mr-2"></i>Polish & lustrage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="apropos" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-fade-in">
+                    <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800" alt="Notre équipe" class="rounded-2xl shadow-2xl">
+                </div>
+                
+                <div class="scroll-fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">À Propos de Nous</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        <strong>Meca Auto30 Saint-Dionisy</strong> est votre partenaire de confiance pour tous vos besoins automobiles depuis plus de 20 ans. Notre équipe de mécaniciens certifiés met son expertise au service de votre satisfaction.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Nous investissons continuellement dans les dernières technologies et formations pour vous garantir un service de qualité supérieure, que ce soit pour une simple révision ou une réparation complexe.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-red-600 rounded-full p-3 flex-shrink-0">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Garantie Qualité</h4>
+                                <p class="text-gray-600">Toutes nos interventions sont garanties 12 mois</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-red-600 rounded-full p-3 flex-shrink-0">
+                                <i class="fas fa-users text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Équipe Certifiée</h4>
+                                <p class="text-gray-600">Mécaniciens diplômés et formés en continu</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-red-600 rounded-full p-3 flex-shrink-0">
+                                <i class="fas fa-euro-sign text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Tarifs Transparents</h4>
+                                <p class="text-gray-600">Devis gratuit et détaillé avant intervention</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section id="galerie" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Notre Garage</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Découvrez nos installations modernes et notre équipement professionnel
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="gallery-item scroll-fade-in">
+                    <img src="https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=400" alt="Atelier 1" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+                
+                <div class="gallery-item scroll-fade-in">
+                    <img src="https://images.unsplash.com/photo-1632823470565-999fbbff0617?w=400" alt="Atelier 2" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+                
+                <div class="gallery-item scroll-fade-in">
+                    <img src="https://images.unsplash.com/photo-1615906655593-ad0386982a0f?w=400" alt="Équipement" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+                
+                <div class="gallery-item scroll-fade-in">
+                    <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=400" alt="Diagnostic" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus text-white text-3xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="temoignages" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Témoignages Clients</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Ce que nos clients disent de nous
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card rounded-2xl p-8 shadow-lg scroll-fade-in">
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Excellent service ! L'équipe est professionnelle et les tarifs sont très corrects. Je recommande vivement Meca Auto30."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="bg-red-600 rounded-full w-12 h-12 flex items-center justify-center text-white font-bold mr-4">
+                            MR
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800">Marie Rousseau</p>
+                            <p class="text-sm text-gray-600">Cliente depuis 2020</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card rounded-2xl p-8 shadow-lg scroll-fade-in">
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Rapide, efficace et honnête. Ils ont diagnostiqué et réparé ma voiture en un temps record. Merci à toute l'équipe !"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="bg-red-600 rounded-full w-12 h-12 flex items-center justify-center text-white font-bold mr-4">
+                            PD
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800">Pierre Dubois</p>
+                            <p class="text-sm text-gray-600">Client depuis 2018</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card rounded-2xl p-8 shadow-lg scroll-fade-in">
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Des professionnels à l'écoute qui prennent le temps d'expliquer. Je ne confie ma voiture qu'à eux désormais."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="bg-red-600 rounded-full w-12 h-12 flex items-center justify-center text-white font-bold mr-4">
+                            SL
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800">Sophie Laurent</p>
+                            <p class="text-sm text-gray-600">Cliente depuis 2019</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Contactez-Nous</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Prenez rendez-vous ou demandez un devis gratuit
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="scroll-fade-in">
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Nom</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-600 focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Prénom</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-600 focus:outline-none transition">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Email</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-600 focus:outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Téléphone</label>
+                            <input type="tel" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-600 focus:outline-none transition">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Type de service</label>
+                            <select required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-600 focus:outline-none transition">
+                                <option value="">Sélectionnez un service</option>
+                                <option value="mecanique">Mécanique Générale</option>
+                                <option value="diagnostic">Diagnostic Électronique</option>
+                                <option value="entretien">Entretien Courant</option>
+                                <option value="carrosserie">Carrosserie</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-semibold mb-2">Message</label>
+                            <textarea required rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-600 focus:outline-none transition"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-full text-white px-8 py-4 rounded-full font-semibold text-lg">
+                            <i class="fas fa-paper-plane mr-2"></i>Envoyer la Demande
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="scroll-fade-in">
+                    <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 text-white h-full">
+                        <h3 class="text-2xl font-bold mb-6">Informations de Contact</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-red-600 rounded-full p-3 flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Adresse</h4>
+                                    <p class="text-gray-300">123 Avenue de la République<br>75001 Paris, France</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-red-600 rounded-full p-3 flex-shrink-0">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Téléphone</h4>
+                                    <p class="text-gray-300">01 23 45 67 89</p>
+                                    <p class="text-gray-300">06 12 34 56 78</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-red-600 rounded-full p-3 flex-shrink-0">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email</h4>
+                                    <p class="text-gray-300">mecaautosaintdionisy@gmail.fr</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="bg-red-600 rounded-full p-3 flex-shrink-0">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Horaires d'Ouverture</h4>
+                                    <p class="text-gray-300">Lundi - Vendredi: 9h00 - 18h00</p>
+                                    <p class="text-gray-300">Samedi: Fermé</p>
+                                    <p class="text-gray-300">Dimanche: Fermé</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-8 border-t border-gray-700">
+                            <h4 class="font-bold mb-4">Suivez-nous</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-red-600 rounded-full w-10 h-10 flex items-center justify-center hover:bg-red-700 transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-red-600 rounded-full w-10 h-10 flex items-center justify-center hover:bg-red-700 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-red-600 rounded-full w-10 h-10 flex items-center justify-center hover:bg-red-700 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-red-600 rounded-full w-10 h-10 flex items-center justify-center hover:bg-red-700 transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="bg-red-600 p-2 rounded-lg">
+                            <i class="fas fa-wrench text-white text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold">Meca Auto30</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Votre partenaire automobile de confiance depuis plus de 20 ans.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#services" class="hover:text-red-500 transition">Mécanique Générale</a></li>
+                        <li><a href="#services" class="hover:text-red-500 transition">Diagnostic</a></li>
+                        <li><a href="#services" class="hover:text-red-500 transition">Entretien</a></li>
+                        <li><a href="#services" class="hover:text-red-500 transition">Carrosserie</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Liens Rapides</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#accueil" class="hover:text-red-500 transition">Accueil</a></li>
+                        <li><a href="#apropos" class="hover:text-red-500 transition">À Propos</a></li>
+                        <li><a href="#temoignages" class="hover:text-red-500 transition">Témoignages</a></li>
+                        <li><a href="#contact" class="hover:text-red-500 transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Recevez nos offres spéciales</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg w-full text-gray-800">
+                        <button class="bg-red-600 px-4 py-2 rounded-r-lg hover:bg-red-700 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 Meca Auto30 Saint-Dionisy. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top" class="fixed bottom-8 right-8 bg-red-600 text-white w-12 h-12 rounded-full shadow-lg hover:bg-red-700 transition opacity-0 pointer-events-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Scroll Fade-in Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.scroll-fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scroll-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.style.opacity = '1';
+                scrollTopBtn.style.pointerEvents = 'auto';
+            } else {
+                scrollTopBtn.style.opacity = '0';
+                scrollTopBtn.style.pointerEvents = 'none';
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Contact Form Submission
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simulate form submission
+            alert('Merci pour votre demande ! Nous vous contacterons dans les plus brefs délais.');
+            e.target.reset();
+        });
+        
+        // Animate stat numbers on scroll
+        const animateValue = (element, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value + (element.dataset.suffix || '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+        
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = true;
+                    const text = entry.target.textContent;
+                    const number = parseInt(text);
+                    const suffix = text.replace(number, '');
+                    entry.target.dataset.suffix = suffix;
+                    animateValue(entry.target, 0, number, 2000);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            statsObserver.observe(stat);
+        });
+    </script>
 </body>
 </html>
