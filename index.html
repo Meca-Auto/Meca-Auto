@@ -129,9 +129,14 @@
             max-height: 500px;
         }
     </style>
+
+    <link rel="stylesheet" href="cookies-consent.css">
+
 </head>
 <body class="bg-gray-50">
     
+    
+
     <!-- Navigation -->
     <nav class="fixed w-full z-50 py-4" id="navbar">
         <div class="container mx-auto px-4">
@@ -205,7 +210,7 @@
                     <!-- Stats -->
                     <div class="grid grid-cols-3 gap-8 mt-12">
                         <div>
-                            <div class="stat-number">10+</div>
+                            <div class="stat-number">20+</div>
                             <p class="text-gray-300">Années d'expérience</p>
                         </div>
                         <div>
@@ -227,8 +232,8 @@
                         <div class="grid grid-cols-2 gap-4 mt-6">
                             <div class="bg-white rounded-xl p-4 text-center">
                                 <i class="fas fa-clock text-red-600 text-2xl mb-2"></i>
-                                <p class="font-semibold text-gray-800">Ouvert 5j/7</p>
-                                <p class="text-sm text-gray-600">Lundi-Vendredi 9h-18h</p>
+                                <p class="font-semibold text-gray-800">Ouvert 6j/7</p>
+                                <p class="text-sm text-gray-600">Lun-Sam 8h-19h</p>
                             </div>
                             <div class="bg-white rounded-xl p-4 text-center">
                                 <i class="fas fa-certificate text-red-600 text-2xl mb-2"></i>
@@ -750,7 +755,7 @@
             </div>
             
             <p>
-            © 2026 Meca Auto30 Saint-Dionisy — By www.ClicknCode34.com —
+            © 2026 Meca Auto30 Saint-Dionisy — 
             <a href="mentions-legales.html" class="hover:text-red-500">Mentions légales</a> | 
             <a href="politique-confidentialite.html" class="hover:text-red-500">Politique de confidentialité</a>
             </p>
@@ -763,33 +768,51 @@
     </button>
     
     <script>
-        // Mobile Menu Toggle
+        // ============================================
+        // FONCTION 1: MENU MOBILE - OUVERTURE/FERMETURE
+        // ============================================
+        // Permet d'activer/désactiver le menu mobile au clic sur le bouton hamburger
+        // Modifiez le sélecteur 'mobile-menu-btn' si le bouton change d'ID en HTML
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         
+        // Écoute le clic sur le bouton et bascule la classe 'active' du menu
+        // La classe 'active' affiche le menu grâce aux styles CSS définit plus haut
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
         });
         
-        // Close mobile menu when clicking on a link
+        // Ferme le menu mobile quand on clique sur un lien de navigation
+        // Améliore l'expérience utilisateur en mobile
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
             });
         });
         
-        // Navbar Scroll Effect
+        // ============================================
+        // FONCTION 2: EFFET DE SCROLLING DU NAVBAR
+        // ============================================
+        // Ajoute un fond semi-transparent au navbar quand on scroll en bas
+        // Cela rend le navbar plus visible avec un effet de "blur"
+        // Modifiez 'scrollY > 100' pour changer le point de déclenchement (en pixels)
         const navbar = document.getElementById('navbar');
         
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
+            if (window.scrollY > 100) {  // MODIFIER: 100 = distance en pixels avant activation
+                navbar.classList.add('scrolled');  // Ajoute la classe CSS 'scrolled' définie dans le style
             } else {
-                navbar.classList.remove('scrolled');
+                navbar.classList.remove('scrolled');  // Retire la classe si on remonte trop
             }
         });
         
-        // Scroll Fade-in Animation
+        // ============================================
+        // FONCTION 3: ANIMATION FADE-IN AU SCROLL
+        // ============================================
+        // Anime les éléments avec la classe 'scroll-fade-in' quand ils deviennent visibles
+        // Options utiles à modifier :
+        // - threshold: 0.1 = l'élément doit être 10% visible pour déclencher l'animation
+        // - rootMargin: Ajoute une zone tampon pour la détection (ici -100px en bas)
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -807,7 +830,11 @@
             observer.observe(el);
         });
         
-        // Smooth Scrolling
+        // ============================================
+        // FONCTION 4: SCROLL LISSE (SMOOTH SCROLLING)
+        // ============================================
+        // Active le scroll lisse vers les sections quand on clique sur un lien d'ancre
+        // Les liens commençant par '#' déclenchent un scroll animé jusqu'à la section cible
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -821,11 +848,16 @@
             });
         });
         
-        // Scroll to Top Button
+        // ============================================
+        // FONCTION 5: BOUTON RETOUR EN HAUT (SCROLL TO TOP)
+        // ============================================
+        // Affiche et active le bouton retour en haut quand on scroll loin dans la page
+        // Le bouton apparaît après 500px de scroll (modifiez la valeur pour changer)
+        // Cliquer le bouton ramène en haut avec animation smooth
         const scrollTopBtn = document.getElementById('scroll-top');
         
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
+            if (window.scrollY > 500) {  // MODIFIER: 500 = distance en pixels avant d'afficher le bouton
                 scrollTopBtn.style.opacity = '1';
                 scrollTopBtn.style.pointerEvents = 'auto';
             } else {
@@ -836,21 +868,34 @@
         
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+                top: 0,  // Revient à Y=0 (top de la page)
+                behavior: 'smooth'  // Animation lisse
             });
         });
         
-        // Contact Form Submission
+        // ============================================
+        // FONCTION 6: GESTION DU FORMULAIRE DE CONTACT
+        // ============================================
+        // Intercepte la soumission du formulaire contact et affiche une confirmation
+        // À MODIFIER: À remplacer par l'envoi réel du formulaire vers votre serveur/email
+        // Exemple pour ajouter un service d'email : utiliser fetch() ou FormSubmit.co
         document.getElementById('contact-form').addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Simulate form submission
+            // REMPLACER CET ALERTE par un vrai envoi de formulaire
+            // Option 1: Utiliser FormSubmit.co (gratuit, sans backend)
+            // Option 2: Utiliser EmailJS (librairie JavaScript)
+            // Option 3: Envoyer vers votre propre API backend
             alert('Merci pour votre demande ! Nous vous contacterons dans les plus brefs délais.');
             e.target.reset();
         });
         
-        // Animate stat numbers on scroll
+        // ============================================
+        // FONCTION 7: ANIMATION DES CHIFFRES (STATS)
+        // ============================================
+        // Anime les counter (20+, 5000+, 100%) avec une montée progressive du nombre
+        // Déclenché quand la section stats devient visible
+        // Modifiez '2000' pour changer la durée de l'animation en millisecondes
         const animateValue = (element, start, end, duration) => {
             let startTimestamp = null;
             const step = (timestamp) => {
@@ -865,22 +910,29 @@
             window.requestAnimationFrame(step);
         };
         
+        // Crée un observateur pour détecter quand les éléments .stat-number deviennent visibles
+        // Quand l'élément est dans la zone visible, l'animation des chiffres se lance une seule fois
+        // data.animated empêche l'animation de se relancer si on scroll plusieurs fois
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !entry.target.dataset.animated) {
                     entry.target.dataset.animated = true;
                     const text = entry.target.textContent;
                     const number = parseInt(text);
-                    const suffix = text.replace(number, '');
+                    const suffix = text.replace(number, '');  // Récupère le symbole (%, +, etc)
                     entry.target.dataset.suffix = suffix;
-                    animateValue(entry.target, 0, number, 2000);
+                    animateValue(entry.target, 0, number, 2000);  // MODIFIER: 2000 = durée animation en ms
                 }
             });
         }, { threshold: 0.5 });
         
+        // Lance l'observateur sur tous les éléments avec la classe .stat-number
+        // Il surveille quand ils apparaissent à l'écran
         document.querySelectorAll('.stat-number').forEach(stat => {
             statsObserver.observe(stat);
         });
     </script>
+    <!-- Initialisation du système de cookies --> <script defer src="cookies-consent.js"></script>
+
 </body>
 </html>
