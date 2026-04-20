@@ -152,14 +152,14 @@ class CookiesConsent {
 
                     <!-- Cookies Marketing -->
                     <div class="cookies-section">
-                        <h3 class="cookies-section-title">🎯 Cookies Marketing</h3>
+                        <h3 class="cookies-section-title">🎯 Cookies Marketing & Publicités</h3>
                         <p class="cookies-section-description">
                             Ces cookies permettent des publicités ciblées et la mesure 
-                            de l'efficacité des campagnes marketing.
+                            de l'efficacité des campagnes marketing. Cela inclut Google AdSense et autres réseaux publicitaires.
                         </p>
                         <div class="cookies-toggle">
                             <label class="cookies-toggle-label">
-                                Marketing (Facebook, Google Ads...)
+                                Marketing (Facebook, Google Ads, Google AdSense...)
                             </label>
                             <button 
                                 class="switch" 
@@ -353,6 +353,9 @@ class CookiesConsent {
         };
         localStorage.setItem(this.config.storageKey, JSON.stringify(data));
         this.consentGiven = true;
+        
+        // Charger ou décharger AdSense selon les préférences
+        this.updateAdSenseConsent();
     }
 
     /**
@@ -373,6 +376,8 @@ class CookiesConsent {
                 } else {
                     this.preferences = data.preferences;
                     this.consentGiven = true;
+                    // Charger AdSense s'il était consentu
+                    this.updateAdSenseConsent();
                 }
             } catch (e) {
                 console.error('Erreur en chargeant les préférences de cookies:', e);
@@ -413,6 +418,92 @@ class CookiesConsent {
             }
         });
         window.dispatchEvent(event);
+    }
+
+    /**
+     * Gestion dynamique du consentement AdSense
+     */
+    updateAdSenseConsent() {
+        // Vérifier s'il existe des annonces sur la page
+        const hasAds = document.querySelectorAll('.adsbygoogle').length > 0;
+        
+        if (!hasAds) {
+            console.log('ℹ️ Pas d\'annonces AdSense sur cette page');
+            return;
+        }
+        
+        // Éviter les chargements multiples
+        if (window.adsenseConfig && window.adsenseConfig.loaded) {
+            console.log('ℹ️ AdSense déjà chargé, pas de rechargement');
+            return;
+        }
+        
+        // Vérifier si le marketing/cookies tiers est consenti
+        if (this.preferences.marketing) {
+            this.loadAdSense();
+        } else {
+            console.log('⛔ Consentement marketing refusé - AdSense non chargé');
+        }
+    }
+
+    /**
+     * Charger le script AdSense
+     */
+    loadAdSense() {
+        // Éviter les chargements multiples
+        if (window.adsenseConfig && window.adsenseConfig.loaded) {
+            console.log('ℹ️ AdSense déjà chargé');
+            return;
+        }
+
+        // Vérifier s'il existe des annonces sur la page
+        const hasAds = document.querySelectorAll('.adsbygoogle').length > 0;
+        if (!hasAds) {
+            console.log('ℹ️ Pas d\'annonces AdSense à charger');
+            return;
+        }
+
+        try {
+            // Initialiser adsenseConfig s'il n'existe pas
+            if (!window.adsenseConfig) {
+                window.adsenseConfig = { clientId: 'ca-pub-5679386365669263' };
+            }
+
+            // Vérifier si le script AdSense est déjà présent
+            if (document.querySelector('script[src*="pagead2.googlesyndication.com"]')) {
+                console.log('ℹ️ Script AdSense déjà présent');
+                window.adsenseConfig.loaded = true;
+                return;
+            }
+
+            // Créer et ajouter le script AdSense
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + 
+                         (window.adsenseConfig.clientId || 'ca-pub-5679386365669263');
+            script.crossOrigin = 'anonymous';
+            
+            // Ajouter des gestionnaires d'événements
+            script.onload = () => {
+                console.log('✓ Script AdSense chargé avec succès');
+                window.adsenseConfig.loaded = true;
+                // Initialiser les annonces
+                if (window.adsbygoogle) {
+                    window.adsbygoogle.push({});
+                }
+            };
+
+            script.onerror = () => {
+                console.error('✗ Erreur lors du chargement du script AdSense');
+                window.adsenseConfig.loaded = false;
+            };
+
+            document.head.appendChild(script);
+            console.log('📡 Script AdSense ajouté au DOM');
+        } catch (e) {
+            console.error('✗ Erreur lors du chargement d\'AdSense:', e);
+            window.adsenseConfig.loaded = false;
+        }
     }
 
     /**

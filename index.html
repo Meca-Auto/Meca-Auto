@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -110,6 +110,48 @@
             transform: scale(1.05);
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .testimonials-scroll-container {
+            overflow: hidden;
+            background: linear-gradient(to right, #f3f4f6 0%, transparent 10%, transparent 90%, #f3f4f6 100%);
+            padding: 2rem 0;
+        }
+
+        .testimonials-scroll-wrapper {
+            display: flex;
+            gap: 2rem;
+            animation: scroll-left 40s linear infinite;
+            padding: 0 2rem;
+            width: fit-content;
+        }
+
+        .testimonials-scroll-wrapper:hover {
+            animation-play-state: paused;
+        }
+
+        .testimonial-card-scroll {
+            flex-shrink: 0;
+            width: 320px;
+            background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card-scroll:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
         
         .gallery-item {
             overflow: hidden;
@@ -177,6 +219,15 @@
     </style>
 
     <link rel="stylesheet" href="cookies-consent.css">
+
+    <!-- Google AdSense - Chargé de manière RGPD-compliant -->
+    <script>
+        // Attendre le consentement avant de charger les publicités
+        window.adsenseConfig = {
+            clientId: 'ca-pub-5679386365669263',
+            shouldLoadAds: false
+        };
+    </script>
 
 </head>
 <body class="bg-gray-50">
@@ -878,7 +929,8 @@
             <p>
             © 2026 Meca Auto30 Saint-Dionisy — 
             <a href="mentions-legales.html" class="hover:text-red-500">Mentions légales</a> | 
-            <a href="politique-confidentialite.html" class="hover:text-red-500">Politique de confidentialité</a>
+            <a href="politique-confidentialite.html" class="hover:text-red-500">Politique de confidentialité</a> |
+            <a href="#" onclick="window.cookiesConsent && window.cookiesConsent.showModal(); return false;" class="hover:text-red-500">🍪 Gérer mes cookies</a>
             </p>
         </div>
     </footer>
@@ -1053,7 +1105,37 @@
             statsObserver.observe(stat);
         });
     </script>
-    <!-- Initialisation du système de cookies --> <script defer src="cookies-consent.js"></script>
+
+    <!-- Initialisation du système de cookies -->
+    <script defer src="cookies-consent.js"></script>
+
+    <!-- Initialisation d'AdSense après le système de cookies -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Attendre que le système de cookies soit prêt
+            setTimeout(() => {
+                // Vérifier s'il existe des annonces AdSense à afficher
+                const hasAds = document.querySelectorAll('.adsbygoogle').length > 0;
+                
+                if (hasAds && window.cookiesConsent && window.cookiesConsent.preferences.marketing) {
+                    console.log('📡 Chargement d\'AdSense - Consentement trouvé + annonces détectées');
+                    window.cookiesConsent.loadAdSense();
+                } else if (!hasAds) {
+                    console.log('ℹ️ Aucune annonce AdSense trouvée sur la page');
+                } else {
+                    console.log('⛔ Consentement marketing refusé - AdSense non chargé');
+                }
+            }, 1000);
+        });
+
+        // Écouter les changements de consentement
+        window.addEventListener('cookiesConsentChanged', function(event) {
+            console.log('🔄 Préférences de cookies mises à jour:', event.detail);
+            if (window.cookiesConsent) {
+                window.cookiesConsent.updateAdSenseConsent();
+            }
+        });
+    </script>
 
 </body>
 </html>

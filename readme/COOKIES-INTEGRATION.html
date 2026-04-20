@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide d'Intégration - Système de Cookies RGPD</title>
+    <style>
+        * {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        body {
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f9fafb;
+        }
+        h1, h2, h3 {
+            color: #ef4444;
+        }
+        code {
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        .code-block code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ef4444;
+        }
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        .success {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        ul, ol {
+            line-height: 1.8;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .feature-item {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .feature-item strong {
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔒 Guide d'Intégration - Système de Gestion des Cookies RGPD</h1>
+
+    <p style="font-size: 16px; color: #666;">
+        Ce guide explique comment intégrer le système complet de gestion des cookies conforme RGPD 
+        sur votre site Meca Auto.
+    </p>
+
+    <!-- =========== ÉTAPE 1 =========== -->
+    <div class="section">
+        <h2>📋 Étape 1 : Structure des fichiers</h2>
+        <p>Vous avez maintenant 3 nouveaux fichiers dans votre répertoire racine :</p>
+        <ul>
+            <li><code>cookies-consent.css</code> - Styles de la bannière</li>
+            <li><code>cookies-consent.js</code> - Logique JavaScript</li>
+            <li><code>COOKIES-INTEGRATION.html</code> - Ce guide (à supprimer après)</li>
+        </ul>
+        <div class="success">
+            ✓ Structure créée automatiquement - Aucun dossier à créer
+        </div>
+    </div>
+
+    <!-- =========== ÉTAPE 2 =========== -->
+    <div class="section">
+        <h2>🔧 Étape 2 : Intégration dans index.html</h2>
+        
+        <p><strong>Localisation dans votre fichier :</strong></p>
+        <p>Dans la balise <code>&lt;head&gt;</code> de votre <code>index.html</code>, ajoutez ces deux lignes 
+        <strong>juste avant la fermeture</strong> <code>&lt;/head&gt;</code> :</p>
+
+        <div class="code-block"><code>&lt;!-- Système de gestion des cookies RGPD --&gt;
+&lt;link rel="stylesheet" href="cookies-consent.css"&gt;</code></div>
+
+        <p>Ensuite, <strong>juste avant la fermeture</strong> <code>&lt;/body&gt;</code>, ajoutez cette ligne :</p>
+
+        <div class="code-block"><code>&lt;!-- Initialisation du système de cookies --&gt;
+&lt;script defer src="cookies-consent.js"&gt;&lt;/script&gt;</code></div>
+
+        <div class="warning">
+            ⚠️ <strong>Important :</strong> 
+            <ul>
+                <li>Le CSS doit être dans le <code>&lt;head&gt;</code></li>
+                <li>Le JS doit être avant la fermeture <code>&lt;/body&gt;</code></li>
+                <li>Sans ces deux imports, le système ne fonctionnera pas</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- =========== ÉTAPE 3 =========== -->
+    <div class="section">
+        <h2>📍 Étape 3 : Ajouter le lien "Gérer mes cookies"</h2>
+
+        <p>Dans votre footer (balise <code>&lt;footer&gt;</code>), le système ajoute automatiquement 
+        un bouton "Gérer mes cookies". Sinon, vous pouvez l'ajouter manuellement :</p>
+
+        <div class="code-block"><code>&lt;button class="cookies-manage-link" onclick="window.cookiesConsent.showModal()"&gt;
+    🍪 Gérer mes cookies
+&lt;/button&gt;</code></div>
+    </div>
+
+    <!-- =========== ÉTAPE 4 =========== -->
+    <div class="section">
+        <h2>🎨 Étape 4 : Personnalisation (Optionnel)</h2>
+
+        <h3>Modifier les couleurs</h3>
+        <p>Dans <code>cookies-consent.css</code>, les variables CSS en début du fichier contrôlent les couleurs :</p>
+
+        <div class="code-block"><code>:root {
+    --primary-color: #ef4444;      /* Rouge - Couleur principale */
+    --primary-dark: #dc2626;       /* Rouge foncé */
+    --primary-light: #fca5a5;      /* Rouge clair */
+    --text-dark: #1e293b;          /* Texte sombre */
+    --text-light: #64748b;         /* Texte clair */
+    /* ... autres variables ... */
+}</code></div>
+
+        <h3>Modifier les textes</h3>
+        <p>Editez directement le HTML généré dans la fonction <code>createBanner()</code> 
+        et <code>createModal()</code> du fichier <code>cookies-consent.js</code>.</p>
+
+        <h3>Modifier la langue</h3>
+        <p>Les textes sont en français par défaut. Pour les changer, modifiez les chaînes 
+        dans les fonctions <code>createBanner()</code> et <code>createModal()</code>.</p>
+    </div>
+
+    <!-- =========== ÉTAPE 5 =========== -->
+    <div class="section">
+        <h2>🔌 Étape 5 : Intégration avec votre code JavaScript</h2>
+
+        <p>Le système expose l'objet <code>window.cookiesConsent</code> globalement. 
+        Vous pouvez donc utiliser ces méthodes :</p>
+
+        <div class="code-block"><code>// Vérifier si l'utilisateur a accepté les analytics
+if (window.cookiesConsent.isAccepted('analytics')) {
+    // Charger Google Analytics, Matomo, etc.
+    loadGoogleAnalytics();
+}
+
+// Vérifier le marketing
+if (window.cookiesConsent.isAccepted('marketing')) {
+    // Charger Facebook Pixel, Google Ads, etc.
+    loadFacebookPixel();
+}
+
+// Écouter les changements de consentement
+window.addEventListener('cookiesConsentChanged', (event) => {
+    console.log('Action:', event.detail.action);
+    console.log('Préférences:', event.detail.preferences);
+    
+    // Recharger les scripts si nécessaire
+    if (event.detail.preferences.analytics) {
+        loadGoogleAnalytics();
+    }
+});</code></div>
+
+        <h3>Exemple complet : Google Analytics</h3>
+        <div class="code-block"><code>// Chargement conditionnel de Google Analytics
+if (window.cookiesConsent && window.cookiesConsent.isAccepted('analytics')) {
+    // Google Analytics
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+    
+    // Chargement du script GA
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID';
+    document.head.appendChild(script);
+}</code></div>
+    </div>
+
+    <!-- =========== ÉTAPE 6 =========== -->
+    <div class="section">
+        <h2>🧪 Étape 6 : Test du système</h2>
+
+        <h3>Pour tester rapidement :</h3>
+        <ol>
+            <li>Ouvrez votre site dans le navigateur</li>
+            <li>Une bannière colorée devrait apparaître en bas de page</li>
+            <li>Cliquez sur "Personnaliser" pour voir la modale</li>
+            <li>Testez les toggles et les boutons</li>
+            <li>Inspectez localStorage dans DevTools (F12 → Application → Local Storage)</li>
+        </ol>
+
+        <h3>Réinitialiser pour retester :</h3>
+        <p>Dans la console (F12), tapez :</p>
+        <div class="code-block"><code>window.cookiesConsent.reset()</code></div>
+        <p>Cela supprimera les préférences sauvegardées et recharger la page.</p>
+    </div>
+
+    <!-- =========== ÉTAPE 7 =========== -->
+    <div class="section">
+        <h2>⚖️ Étape 7 : Conformité RGPD</h2>
+
+        <div class="success">
+            ✓ Points de conformité respectés :
+        </div>
+
+        <ul>
+            <li>✓ <strong>Consentement explicite</strong> - L'utilisateur doit cliquer pour accepter</li>
+            <li>✓ <strong>Opt-out facile</strong> - Bouton "Refuser tous" aussi visible que "Accepter"</li>
+            <li>✓ <strong>Granularité</strong> - Possibilité de choisir catégorie par catégorie</li>
+            <li>✓ <strong>Transparence</strong> - Descriptions claires de chaque type de cookie</li>
+            <li>✓ <strong>Stockage</strong> - Préférences sauvegardées dans localStorage (pas de cookie)</li>
+            <li>✓ <strong>Durée</strong> - Consentement valide 12 mois (modifiable)</li>
+            <li>✓ <strong>Accessibilité</strong> - Lien vers politique de confidentialité</li>
+            <li>✓ <strong>Réversibilité</strong> - L'utilisateur peut changer ses préférences à tout moment</li>
+        </ul>
+
+        <h3>📄 Mettez à jour votre politique de confidentialité</h3>
+        <p>Assurez-vous que votre <code>politique-confidentialite.html</code> 
+        contient une section "Cookies" expliquant :</p>
+        <ul>
+            <li>Quels cookies vous utilisez</li>
+            <li>À quoi ils servent</li>
+            <li>Comment les utilisateurs peuvent les contrôler</li>
+        </ul>
+    </div>
+
+    <!-- =========== ÉTAPE 8 =========== -->
+    <div class="section">
+        <h2>📊 Étape 8 : Cas d'usage avancés</h2>
+
+        <h3>Charger Google Analytics conditionnellement</h3>
+        <div class="code-block"><code>// Dans votre code existant, remplacez le chargement direct par :
+document.addEventListener('DOMContentLoaded', () => {
+    // Attendre que le système de cookies soit initié
+    if (window.cookiesConsent.isAccepted('analytics')) {
+        // Injecter Google Analytics script
+        const gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID';
+        document.head.appendChild(gaScript);
+    }
+});</code></div>
+
+        <h3>Charger Facebook Pixel conditionnellement</h3>
+        <div class="code-block"><code>if (window.cookiesConsent.isAccepted('marketing')) {
+    // Facebook Pixel
+    !(function(f,b,e,v,n,t,s){
+        if(f.fbq)return;
+        n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        // ... code Facebook Pixel ...
+    })(window, document,'script');
+}</code></div>
+
+        <h3>Vous avertir quand l'utilisateur accepte</h3>
+        <div class="code-block"><code>window.addEventListener('cookiesConsentChanged', (event) => {
+    if (event.detail.action === 'acceptAll') {
+        console.log('📊 Tous les cookies acceptés !');
+        console.log('Analytics:', event.detail.preferences.analytics);
+        console.log('Marketing:', event.detail.preferences.marketing);
+    }
+});</code></div>
+    </div>
+
+    <!-- =========== CHECKLIST =========== -->
+    <div class="section">
+        <h2>✅ Checklist d'intégration</h2>
+
+        <ul>
+            <li>☐ Copier <code>cookies-consent.css</code> dans le répertoire racine</li>
+            <li>☐ Copier <code>cookies-consent.js</code> dans le répertoire racine</li>
+            <li>☐ Ajouter le lien CSS dans le <code>&lt;head&gt;</code> de <code>index.html</code></li>
+            <li>☐ Ajouter le lien JS avant <code>&lt;/body&gt;</code> de <code>index.html</code></li>
+            <li>☐ Tester sur desktop et mobile</li>
+            <li>☐ Vérifier localStorage (F12 → Application)</li>
+            <li>☐ Mettre à jour la politique de confidentialité</li>
+            <li>☐ Implémenter le chargement conditionnel des analytics</li>
+            <li>☐ Tester sur tous les navigateurs (Chrome, Firefox, Safari, Edge)</li>
+            <li>☐ Supprimer ce fichier HTML après l'intégration</li>
+        </ul>
+    </div>
+
+    <!-- =========== TROUBLESHOOTING =========== -->
+    <div class="section">
+        <h2>🐛 Troubleshooting</h2>
+
+        <h3>La bannière n'apparaît pas</h3>
+        <ul>
+            <li>Vérifiez que le CSS est chargé (F12 → Network)</li>
+            <li>Vérifiez que le JS est chargé (F12 → Network)</li>
+            <li>Vérifiez la console (F12 → Console) pour les erreurs</li>
+            <li>Réinitia avec <code>window.cookiesConsent.reset()</code></li>
+        </ul>
+
+        <h3>Le localStorage ne sauvegarde pas</h3>
+        <ul>
+            <li>Vérifiez que le navigateur n'est pas en mode privé</li>
+            <li>Vérifiez que localStorage est activé (F12 → Application)</li>
+            <li>Vérifiez la clé stockée : <code>meca-auto-cookies-consent</code></li>
+        </ul>
+
+        <h3>Les styles ne s'appliquent pas</h3>
+        <ul>
+            <li>Vérifiez que le CSS est chargé avant votre CSS personnalisé</li>
+            <li>Vérifiez qu'il n'y a pas de conflit avec Tailwind CSS</li>
+            <li>Utilisez l'inspecteur CSS (F12) pour voir les styles appliqués</li>
+        </ul>
+
+        <h3>Le formulaire de contact charge les cookies</h3>
+        <ul>
+            <li>Si votre formulaire utilise un service externe (Formspree, Netlify, etc.),
+                assurez-vous de charger le script <strong>après</strong> le consentement</li>
+            <li>Vérifiez que le <code>action</code> du formulaire n'appelle pas d'API 
+                non consentie</li>
+        </ul>
+    </div>
+
+    <!-- =========== SUPPORT =========== -->
+    <div class="section">
+        <h2>📞 Support et questions</h2>
+
+        <p>Si vous avez des questions sur l'implémentation :</p>
+        <ol>
+            <li>Vérifiez d'abord la console du navigateur (F12) pour les erreurs</li>
+            <li>Assurez-vous que les fichiers CSS et JS sont bien référencés</li>
+            <li>Vérifiez que localStorage fonctionne</li>
+            <li>Testez dans un nouvel onglet en navigation privée</li>
+        </ol>
+
+        <div class="success">
+            ✓ Code prêt à l'emploi, zéro dépendance externe, totalement personnalisable
+        </div>
+    </div>
+
+    <hr style="margin: 40px 0; border: none; border-top: 2px solid #e5e7eb;">
+
+    <p style="text-align: center; color: #999; font-size: 14px;">
+        Système de Gestion des Cookies RGPD - Version 1.0<br>
+        Créé pour Meca Auto30 - Conforme RGPD, CNIL
+    </p>
+</body>
+</html>

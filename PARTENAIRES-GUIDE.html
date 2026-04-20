@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide - Personnaliser la Section Partenaires</title>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+            color: #333;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #ef4444;
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #1e293b;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h3 {
+            color: #ef4444;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.5;
+            margin: 12px 0;
+        }
+        .file-structure {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 16px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 12px 0;
+        }
+        .success {
+            background: #dcfce7;
+            border-left: 4px solid #16a34a;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        .info {
+            background: #ccf0ff;
+            border-left: 4px solid #0284c7;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        ol, ul {
+            margin-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        strong {
+            color: #ef4444;
+        }
+        a {
+            color: #ef4444;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .step-card {
+            background: #f8fafc;
+            border-left: 4px solid #ef4444;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤝 Personnaliser la Section Partenaires</h1>
+        <p class="subtitle">Guide complet pour remplacer les partenaires par les vôtres</p>
+
+        <!-- SECTION 1 -->
+        <div class="section">
+            <h2>📍 Où se trouve la section?</h2>
+            <p>La section "Partenaires" (ou "Collaborations") a été ajoutée dans votre <strong>index.html</strong> entre la section Témoignages et la section Contact.</p>
+            <div class="success">
+                ✅ Elle est aussi accessible via le menu : <strong>Accueil → Partenaires</strong>
+            </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div class="section">
+            <h2>✏️ Étape 1 : Modifier les 3 partenaires</h2>
+            <p>Chaque partenaire a cette structure dans le code :</p>
+            <div class="code-block"><code>&lt;!-- Partner 1 --&gt;
+&lt;a href="https://example1.com" target="_blank" class="group"&gt;
+    &lt;div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl..."&gt;
+        &lt;!-- ICÔNE --&gt;
+        &lt;div class="mb-6 h-20 flex items-center justify-center"&gt;
+            &lt;i class="fas fa-car text-5xl text-red-600"&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- NOM --&gt;
+        &lt;h3 class="text-xl font-bold..."&gt;Partenaire 1&lt;/h3&gt;
+        
+        &lt;!-- DESCRIPTION --&gt;
+        &lt;p class="text-gray-600..."&gt;Description du partenariat&lt;/p&gt;
+        
+        &lt;!-- BOUTON --&gt;
+        &lt;div class="inline-block bg-red-600..."&gt;
+            Visiter le site →
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/a&gt;</code></div>
+
+            <h3>Comment personnaliser ?</h3>
+            <ol>
+                <li><strong>Changez l'URL</strong> : <code>https://example1.com</code> → votre URL réelle</li>
+                <li><strong>Changez le nom</strong> : "Partenaire 1" → le vrai nom</li>
+                <li><strong>Changez la description</strong> : "Description du partenariat" → votre texte</li>
+                <li><strong>Changez l'icône</strong> : Voir section ci-dessous</li>
+            </ol>
+        </div>
+
+        <!-- SECTION 3 -->
+        <div class="section">
+            <h2>🎨 Étape 2 : Changer l'icône</h2>
+            <p>Par défaut, j'ai utilisé des icônes Font Awesome. Vous avez 3 options :</p>
+
+            <h3>Option A : Changer l'icône Font Awesome (Plus simple)</h3>
+            <div class="step-card">
+                <p><strong>Icônes disponibles :</strong></p>
+                <ul>
+                    <li><code>&lt;i class="fas fa-car"&gt;&lt;/i&gt;</code> - Voiture 🚗</li>
+                    <li><code>&lt;i class="fas fa-tools"&gt;&lt;/i&gt;</code> - Outils 🔧</li>
+                    <li><code>&lt;i class="fas fa-cog"&gt;&lt;/i&gt;</code> - Engrenage ⚙️</li>
+                    <li><code>&lt;i class="fas fa-wrench"&gt;&lt;/i&gt;</code> - Clé anglaise 🔨</li>
+                    <li><code>&lt;i class="fas fa-industry"&gt;&lt;/i&gt;</code> - Usine 🏭</li>
+                    <li><code>&lt;i class="fas fa-truck"&gt;&lt;/i&gt;</code> - Camion 🚚</li>
+                </ul>
+                <p><strong>Pour en trouver d'autres :</strong> <a href="https://fontawesome.com/search?o=r&m=free" target="_blank">FontAwesome Icons</a></p>
+            </div>
+
+            <h3>Option B : Ajouter votre propre logo (si c'est une image)</h3>
+            <div class="step-card">
+                <p><strong>Remplacez cette ligne :</strong></p>
+                <div class="code-block"><code>&lt;i class="fas fa-car text-5xl text-red-600"&gt;&lt;/i&gt;</code></div>
+                <p><strong>Par :</strong></p>
+                <div class="code-block"><code>&lt;img src="logo-partenaire1.png" alt="Nom Partenaire" style="max-height: 80px; max-width: 120px;"&gt;</code></div>
+                <p>Et mettez le fichier logo dans le même dossier que votre index.html</p>
+            </div>
+
+            <h3>Option C : Ajouter le nom du partenaire à la place de l'icône</h3>
+            <div class="step-card">
+                <p><strong>Remplacez :</strong></p>
+                <div class="code-block"><code>&lt;i class="fas fa-car text-5xl text-red-600"&gt;&lt;/i&gt;</code></div>
+                <p><strong>Par :</strong></p>
+                <div class="code-block"><code>&lt;div class="text-3xl font-bold text-red-600"&gt;PARTENAIRE 1&lt;/div&gt;</code></div>
+            </div>
+        </div>
+
+        <!-- SECTION 4 -->
+        <div class="section">
+            <h2>📝 Exemple de personnalisation complète</h2>
+            <p>Voici comment personnaliser un partenaire avec un vrai logo :</p>
+
+            <div class="code-block"><code>&lt;!-- Partenaire: Bosch --&gt;
+&lt;a href="https://www.bosch.com/fr/" target="_blank" class="group"&gt;
+    &lt;div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl..."&gt;
+        &lt;div class="mb-6 h-20 flex items-center justify-center"&gt;
+            &lt;img src="logo-bosch.png" alt="Bosch" style="max-height: 80px;"&gt;
+        &lt;/div&gt;
+        
+        &lt;h3 class="text-xl font-bold..."&gt;Bosch&lt;/h3&gt;
+        &lt;p class="text-gray-600..."&gt;Pièces et outils de diagnostic automobile de qualité professionnelle&lt;/p&gt;
+        
+        &lt;div class="inline-block bg-red-600..."&gt;
+            Visiter le site →
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/a&gt;</code></div>
+
+            <div class="success">
+                ✅ Remplacez "Bosch" et l'URL par vos vrais partenaires !
+            </div>
+        </div>
+
+        <!-- SECTION 5 -->
+        <div class="section">
+            <h2>🔗 Étape 3 : Personnaliser l'appel à l'action</h2>
+            <p>Le texte en bas "Intéressé par une collaboration ?" peut aussi être modifié :</p>
+
+            <div class="code-block"><code>&lt;h3 class="text-2xl md:text-3xl font-bold mb-4"&gt;Intéressé par une collaboration ?&lt;/h3&gt;
+&lt;p class="text-lg mb-8 text-red-100"&gt;
+    Nous aimerions explorer les possibilités de partenariat avec votre entreprise.
+&lt;/p&gt;</code></div>
+
+            <p><strong>Vous pouvez personnaliser :</strong></p>
+            <ul>
+                <li>Le titre principal ("Intéressé par une collaboration ?")</li>
+                <li>La description ("Nous aimerions explorer...")</li>
+                <li>Le texte du bouton ("Contactez-nous")</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 6 -->
+        <div class="section">
+            <h2>📋 Template à copier</h2>
+            <p>Voici un template vide à copier/coller pour ajouter une 4ème partenaire si besoin :</p>
+
+            <div class="code-block"><code>&lt;!-- Partner 4 --&gt;
+&lt;a href="https://votre-url.com" target="_blank" class="group"&gt;
+    &lt;div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center cursor-pointer border border-gray-200 hover:border-red-600"&gt;
+        &lt;div class="mb-6 h-20 flex items-center justify-center"&gt;
+            &lt;i class="fas fa-star text-5xl text-red-600"&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-red-600 transition"&gt;Votre Partenaire&lt;/h3&gt;
+        &lt;p class="text-gray-600 text-sm mb-4"&gt;Description courte&lt;/p&gt;
+        &lt;div class="inline-block bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold group-hover:bg-red-700 transition"&gt;
+            Visiter le site →
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/a&gt;</code></div>
+
+            <div class="info">
+                ℹ️ <strong>À faire :</strong>
+                <ol>
+                    <li>Remplacez "https://votre-url.com"</li>
+                    <li>Remplacez "Votre Partenaire"</li>
+                    <li>Remplacez "Description courte"</li>
+                    <li>Changez l'icône ou le logo</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- SECTION 7 -->
+        <div class="section">
+            <h2>✅ Points importants</h2>
+            <div class="success">
+                <strong>Assurez-vous que :</strong>
+                <ul>
+                    <li>✅ Les URLs sont correctes (commencent par <code>https://</code>)</li>
+                    <li>✅ Les noms des partenaires sont exacts</li>
+                    <li>✅ Les descriptions sont pertinentes</li>
+                    <li>✅ Les icônes ou logos s'affichent bien</li>
+                    <li>✅ Les liens functionnent (testez-les en cliquant)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION 8 -->
+        <div class="section">
+            <h2>🧪 Test</h2>
+            <ol>
+                <li>Modifiez votre <strong>index.html</strong></li>
+                <li>Ouvrez votre site : F5 pour recharger</li>
+                <li>Allez à la section "Partenaires" via le menu</li>
+                <li>Les partenaires s'affichent avec votre contenu ✅</li>
+                <li>Cliquez sur les logos pour vérifier les liens</li>
+            </ol>
+        </div>
+
+        <!-- CTA -->
+        <div style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-top: 40px;">
+            <h2 style="color: white; margin-top: 0;">✨ Besoin d'aide?</h2>
+            <p>Consultez le code complet dans votre <strong>index.html</strong> ligne ~630-695</p>
+            <p style="margin-bottom: 0; opacity: 0.9;">Avec ce guide, vous pouvez facilement ajouter ou modifier vos partenaires! 🚀</p>
+        </div>
+
+        <hr style="margin: 40px 0; border: none; border-top: 2px solid #e2e8f0;">
+        <p style="text-align: center; color: #666; font-size: 14px;">
+            Guide de personnalisation - Section Partenaires<br>
+            Créé: Février 2026 -  Meca Auto30
+        </p>
+    </div>
+
+    <script>
+        // Copier du code au clic
+        document.querySelectorAll('.code-block').forEach(block => {
+            block.style.cursor = 'pointer';
+            block.title = 'Cliquez pour copier';
+            block.addEventListener('click', function() {
+                const text = this.innerText;
+                navigator.clipboard.writeText(text).then(() => {
+                    const original = this.innerText;
+                    this.innerText = '✅ Copié !';
+                    setTimeout(() => {
+                        this.innerText = original;
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

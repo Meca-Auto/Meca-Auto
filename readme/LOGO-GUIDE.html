@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide - Ajouter votre Logo Meca Auto</title>
+    <style>
+        * {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #ef4444;
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        h2 {
+            color: #1e293b;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #ef4444;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+        .step {
+            background: #f8fafc;
+            border-left: 4px solid #ef4444;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 4px;
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 12px 0;
+        }
+        .file-structure {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 16px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 16px 0;
+        }
+        .success {
+            background: #dcfce7;
+            border-left: 4px solid #16a34a;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        .info {
+            background: #ccf0ff;
+            border-left: 4px solid #0284c7;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 16px 0;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        strong {
+            color: #ef4444;
+        }
+        a {
+            color: #ef4444;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .button {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            margin: 12px 0;
+            text-decoration: none;
+        }
+        .button:hover {
+            background: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Ajouter votre Logo Meca Auto</h1>
+        <p class="subtitle">Guide complet pour faire apparaître votre logo sur Google et dans les onglets du navigateur</p>
+
+        <!-- SECTION 1 -->
+        <div class="section">
+            <h2>✅ Étape 1 : Créer les fichiers favicon</h2>
+            <p>Vous avez besoin de convertir votre logo en différents formats et tailles pour que Google et les navigateurs puissent les utiliser.</p>
+
+            <h3>Option A : Utiliser un site de conversion (Facile - Recommandé)</h3>
+            <div class="step">
+                <p><strong>Allez sur</strong> : <a href="https://favicon-generator.org/" target="_blank">favicon-generator.org</a></p>
+                <ol>
+                    <li>Uploadez votre logo <strong>logo-meca-auto.png</strong></li>
+                    <li>Cliquez sur "Generate"</li>
+                    <li>Téléchargez le ZIP avec tous les fichiers</li>
+                </ol>
+            </div>
+
+            <h3>Option B : Utiliser convertio.co</h3>
+            <div class="step">
+                <ol>
+                    <li>Allez sur <a href="https://convertio.co/" target="_blank">convertio.co</a></li>
+                    <li>Convertissez votre PNG en ICO (favicon standard)</li>
+                    <li>Téléchargez le fichier <strong>favicon.ico</strong></li>
+                </ol>
+            </div>
+
+            <div class="success">
+                ✅ <strong>Résultat attendu</strong> : Des fichiers comme:
+                <ul>
+                    <li>favicon-32x32.png</li>
+                    <li>favicon-16x16.png</li>
+                    <li>apple-touch-icon.png</li>
+                    <li>favicon.ico (optionnel)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div class="section">
+            <h2>📁 Étape 2 : Placer les fichiers dans votre dossier</h2>
+            <p>Copiez les fichiers favicon dans le même répertoire que votre <strong>index.html</strong></p>
+
+            <h3>Structure de votre projet :</h3>
+            <div class="file-structure">
+meca auto v3/
+├── index.html
+├── favicon-32x32.png          ← À AJOUTER
+├── favicon-16x16.png          ← À AJOUTER
+├── apple-touch-icon.png       ← À AJOUTER
+├── policy-confidentialite.html
+├── mentions-legales.html
+├── cookies-consent.css
+└── cookies-consent.js
+            </div>
+
+            <div class="warning">
+                ⚠️ <strong>Important</strong> : Les fichiers doivent être dans le même dossier que index.html, pas dans un sous-dossier.
+            </div>
+        </div>
+
+        <!-- SECTION 3 -->
+        <div class="section">
+            <h2>🔧 Étape 3 : Les balises ont déjà été ajoutées !</h2>
+            <p>J'ai déjà mis à jour votre <strong>index.html</strong> avec les balises necessaires ✅</p>
+
+            <h3>Voici ce qui a été ajouté dans le &lt;head&gt; :</h3>
+            <div class="code-block"><code>&lt;!-- Favicon - Logo dans l'onglet du navigateur --&gt;
+&lt;link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32"&gt;
+&lt;link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16"&gt;
+&lt;link rel="apple-touch-icon" href="apple-touch-icon.png"&gt;
+&lt;meta name="theme-color" content="#ef4444"&gt;</code></div>
+
+            <div class="success">
+                ✅ Vous n'avez rien à modifier ici, c'est déjà fait !
+            </div>
+        </div>
+
+        <!-- SECTION 4 -->
+        <div class="section">
+            <h2>🌐 Étape 4 : Mettre à jour les URLs (IMPORTANT)</h2>
+            <p>Si vous hébergez votre site en ligne (avec un domaine), vous devez mettre à jour les URLs pour que Google les trouve.</p>
+
+            <h3>Cas 1 : Vous testez en local (sur votre ordinateur)</h3>
+            <div class="success">
+                ✅ <strong>Aucune modification nécessaire</strong> - Les chemins relatifs fonctionnent automatiquement
+            </div>
+
+            <h3>Cas 2 : Votre site est en ligne (ex: mecaauto30.fr)</h3>
+            <p>Ouvrez votre <strong>index.html</strong> et cherchez cette ligne :</p>
+            <div class="code-block"><code>&lt;meta property="og:url" content="https://mecaauto30.fr"&gt;</code></div>
+            <p><strong>Remplacez</strong> <code>mecaauto30.fr</code> par votre <strong>vrai domaine</strong></p>
+
+            <p>Puis cherchez cette ligne :</p>
+            <div class="code-block"><code>&lt;meta property="og:image" content="https://mecaauto30.fr/logo-meca-auto.png"&gt;</code></div>
+            <p><strong>Remplacez</strong> par votre vrai domaine ET le nom de votre fichier logo :</p>
+            <div class="code-block"><code>&lt;meta property="og:image" content="https://VOTRE_DOMAINE.fr/favicon-32x32.png"&gt;</code></div>
+
+            <div class="info">
+                ℹ️ <strong>Exemple pour mecaauto30.fr</strong> :
+                <pre style="background: #f8fafc; padding: 12px; border-radius: 4px; margin: 12px 0;">https://mecaauto30.fr/favicon-32x32.png</pre>
+            </div>
+        </div>
+
+        <!-- SECTION 5 -->
+        <div class="section">
+            <h2>🧪 Étape 5 : Tester dans le navigateur</h2>
+            
+            <h3>1. Affichage dans l'onglet du navigateur</h3>
+            <div class="step">
+                <ol>
+                    <li>Ouvrez votre site (F5 pour recharger)</li>
+                    <li>Regardez l'onglet en haut du navigateur</li>
+                    <li>Vous devez voir votre logo Meca Auto au lieu de l'icône générique</li>
+                </ol>
+            </div>
+
+            <h3>2. Tester sur mobile (Apple)</h3>
+            <div class="step">
+                <ol>
+                    <li>Ouvrez votre site sur iPhone/iPad</li>
+                    <li>Appuyez sur "Partager" → "Sur l'écran d'accueil"</li>
+                    <li>L'icône de l'app doit afficher votre logo</li>
+                </ol>
+            </div>
+
+            <h3>3. Vérifier sur Google Search</h3>
+            <div class="step">
+                <ol>
+                    <li>Attendez quelques jours que Google réindexe votre site</li>
+                    <li>Cherchez <strong>"meca auto30.fr"</strong> sur Google</li>
+                    <li>Votre logo doit apparaître dans les résultats de recherche</li>
+                </ol>
+            </div>
+
+            <div class="warning">
+                ⚠️ <strong>Note</strong> : Google met parfois 24-48h pour mettre à jour le cache. Vous pouvez forcer la réindexation :
+                <a href="https://search.google.com/search-console" target="_blank">Google Search Console</a>
+            </div>
+        </div>
+
+        <!-- SECTION 6 -->
+        <div class="section">
+            <h2>📊 Étape 6 : Vérifier avec Google Search Console</h2>
+            <p>Pour accélérer et vérifier que Google reconnaît correctement votre site :</p>
+
+            <div class="step">
+                <ol>
+                    <li>Allez sur <a href="https://search.google.com/search-console" target="_blank">Google Search Console</a></li>
+                    <li>Connectez-vous avec votre compte Google</li>
+                    <li>Ajoutez votre domaine <strong>mecaauto30.fr</strong></li>
+                    <li>Soumettez votre sitemap (URL sitemap : <code>/sitemap.xml</code>)</li>
+                    <li>Allez à "Inspection d'URL" et testez votre page d'accueil</li>
+                    <li>Cliquez sur "Demander l'indexation"</li>
+                </ol>
+            </div>
+
+            <div class="success">
+                ✅ Google va réindexer votre site en quelques heures
+            </div>
+        </div>
+
+        <!-- SECTION 7 -->
+        <div class="section">
+            <h2>✨ Bonus : Optimisations supplémentaires</h2>
+            
+            <h3>1. Ajouter une bannière Facebook/Instagram</h3>
+            <p>Quand quelqu'un partage votre lien sur les réseaux sociaux, il faut une belle image :</p>
+            <div class="step">
+                <p><strong>Créez une image</strong> : 1200x630 pixels avec votre logo et votre slogan</p>
+                <p><strong>Sauvegardez-la</strong> comme : <code>og-image.png</code></p>
+                <p><strong>Modifiez cette ligne</strong> dans votre index.html :</p>
+                <div class="code-block"><code>&lt;meta property="og:image" content="https://mecaauto30.fr/og-image.png"&gt;</code></div>
+            </div>
+
+            <h3>2. Ajouter une sitemap.xml</h3>
+            <p>Un fichier sitemap aide Google à indexer votre site plus vite.</p>
+            <div class="step">
+                <p>Créez un fichier <strong>sitemap.xml</strong> avec ce contenu :</p>
+                <div class="code-block"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://mecaauto30.fr/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-02-16&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://mecaauto30.fr/politique-confidentialite.html&lt;/loc&gt;
+    &lt;changefreq&gt;yearly&lt;/changefreq&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://mecaauto30.fr/mentions-legales.html&lt;/loc&gt;
+    &lt;changefreq&gt;yearly&lt;/changefreq&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;</code></div>
+            </div>
+        </div>
+
+        <!-- SECTION 8 -->
+        <div class="section">
+            <h2>🚀 Checklist finale</h2>
+            <div class="step">
+                <p><strong>À faire :</strong></p>
+                <ul>
+                    <li>☐ Générer les fichiers favicon (favicon-generator.org)</li>
+                    <li>☐ Copier les fichiers dans le dossier de votre site</li>
+                    <li>☐ Vérifier que les balises sont dans index.html (déjà fait ✓)</li>
+                    <li>☐ Corriger les URLs si votre site est en ligne</li>
+                    <li>☐ Tester dans plusieurs navigateurs</li>
+                    <li>☐ Tester sur mobile</li>
+                    <li>☐ Soumettre à Google Search Console</li>
+                    <li>☐ Attendre la réindexation (~24-48h)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION 9 -->
+        <div class="section">
+            <h2>❓ Questions fréquentes</h2>
+            
+            <h3>Q: Le favicon n'apparaît pas dans l'onglet</h3>
+            <div class="step">
+                <strong>R:</strong>
+                <ul>
+                    <li>Videz le cache : Ctrl+Shift+Del (Chrome)</li>
+                    <li>Appuyez sur F5 pour forcer le rechargement</li>
+                    <li>Fermez et réouvrez le navigateur</li>
+                    <li>Vérifiez que les fichiers sont au bon endroit</li>
+                </ul>
+            </div>
+
+            <h3>Q: Combien de temps avant que Google le voit ?</h3>
+            <div class="step">
+                <strong>R:</strong> Normalement 24-48h. Vous pouvez accélérer avec Google Search Console.
+            </div>
+
+            <h3>Q: Quel format pour le logo ?</h3>
+            <div class="step">
+                <strong>R:</strong>
+                <ul>
+                    <li>PNG (recommandé) - transparent</li>
+                    <li>JPG - avec couleur de fond</li>
+                    <li>SVG - vectoriel (meilleur)</li>
+                </ul>
+            </div>
+
+            <h3>Q: Et si mon logo n'est pas carré ?</h3>
+            <div class="step">
+                <strong>R:</strong> Les websites favicon-generator vont automatiquement centrer votre logo sur un fond carré.
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-top: 40px;">
+            <h2 style="color: white; margin-top: 0;">🎯 Prêt à commencer?</h2>
+            <p style="font-size: 16px; margin: 12px 0;">Les balises HTML sont déjà en place. Vous avez juste besoin de :</p>
+            <ol style="text-align: left; display: inline-block;">
+                <li>Générer vos favicon (2 min)</li>
+                <li>Copier les fichiers (1 min)</li>
+                <li>Tester (1 min)</li>
+            </ol>
+            <p style="margin-top: 20px; opacity: 0.9;">En moins de 5 minutes, votre logo s'affichera partout ! ✨</p>
+        </div>
+
+        <hr style="margin: 40px 0; border: none; border-top: 2px solid #e2e8f0;">
+        <p style="text-align: center; color: #64748b;">
+            📚 Guide spécifique pour Meca Auto30<br>
+            Créé le 16 février 2026 - Version 1.0
+        </p>
+    </div>
+</body>
+</html>

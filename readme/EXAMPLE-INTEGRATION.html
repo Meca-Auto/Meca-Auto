@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple d'Intégration des Cookies - AVANT/APRÈS</title>
+    <style>
+        * {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f9fafb;
+            line-height: 1.6;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .before, .after {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        .before {
+            border-left-color: #ef4444;
+        }
+        .after {
+            border-left-color: #10b981;
+        }
+        h2 {
+            color: #1e293b;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        code {
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .code-block code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #92400e;
+        }
+        .added {
+            background: #dcfce7;
+            border-left: 2px solid #10b981;
+            padding: 2px 8px;
+            margin: 4px 0;
+        }
+        .note {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        h3 {
+            color: #ef4444;
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🔒 Exemple d'Intégration des Cookies dans index.html</h1>
+    <p style="color: #666; font-size: 16px;">
+        Ce fichier montre AVANT et APRÈS où ajouter les deux imports 
+        pour le système de gestion des cookies.
+    </p>
+
+    <div class="warning">
+        <strong>⚠️ Important :</strong> Vous n'avez que 2 lignes à ajouter à votre fichier existant!
+    </div>
+
+    <!-- ÉTAPE 1 : DANS LA SECTION HEAD -->
+    <h2 style="margin-top: 40px; color: #1e293b;">
+        <span>1️⃣</span> Ajouter le CSS dans <code>&lt;head&gt;</code>
+    </h2>
+    
+    <div class="container">
+        <div class="before">
+            <h3>❌ AVANT</h3>
+            <p>Votre <code>&lt;head&gt;</code> ressemble à ça:</p>
+            <div class="code-block"><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Meca Auto30...&lt;/title&gt;
+    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+    &lt;link rel="stylesheet" href="..."&gt;
+    &lt;style&gt;
+        ...vos styles CSS...
+    &lt;/style&gt;
+&lt;/head&gt;</code></div>
+        </div>
+
+        <div class="after">
+            <h3>✅ APRÈS</h3>
+            <p>Ajoutez cette ligne <strong>juste avant la fermeture</strong> <code>&lt;/head&gt;</code>:</p>
+            <div class="code-block"><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Meca Auto30...&lt;/title&gt;
+    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+    &lt;link rel="stylesheet" href="..."&gt;
+    &lt;style&gt;
+        ...vos styles CSS...
+    &lt;/style&gt;
+    <span class="highlight">&lt;!-- Système de gestion des cookies RGPD --&gt;
+    &lt;link rel="stylesheet" href="cookies-consent.css"&gt;</span>
+&lt;/head&gt;</code></div>
+            <div class="note">
+                ℹ️ <strong>Astuce:</strong> Cette ligne doit être juste avant <code>&lt;/head&gt;</code> 
+                pour charger les styles de la bannière
+            </div>
+        </div>
+    </div>
+
+    <!-- ÉTAPE 2 : AVANT LA FERMETURE BODY -->
+    <h2 style="margin-top: 40px; color: #1e293b;">
+        <span>2️⃣</span> Ajouter le JavaScript avant <code>&lt;/body&gt;</code>
+    </h2>
+    
+    <div class="container">
+        <div class="before">
+            <h3>❌ AVANT</h3>
+            <p>Votre <code>&lt;body&gt;</code> se termine comme ça:</p>
+            <div class="code-block"><code>    &lt;!-- Footer --&gt;
+    &lt;footer&gt;
+        &lt;p&gt;© 2024 Meca Auto30&lt;/p&gt;
+    &lt;/footer&gt;
+    
+    &lt;!-- Vos scripts --&gt;
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></div>
+        </div>
+
+        <div class="after">
+            <h3>✅ APRÈS</h3>
+            <p>Ajoutez cette ligne <strong>juste avant la fermeture</strong> <code>&lt;/body&gt;</code>:</p>
+            <div class="code-block"><code>    &lt;!-- Footer --&gt;
+    &lt;footer&gt;
+        &lt;p&gt;© 2024 Meca Auto30&lt;/p&gt;
+    &lt;/footer&gt;
+    
+    &lt;!-- Vos scripts --&gt;
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+    <span class="highlight">&lt;!-- Initialisation du système de cookies --&gt;
+    &lt;script defer src="cookies-consent.js"&gt;&lt;/script&gt;</span>
+&lt;/body&gt;</code></div>
+            <div class="note">
+                ℹ️ <strong>Astuce:</strong> L'attribut <code>defer</code> charge le script 
+                en arrière-plan et l'exécute après le DOM
+            </div>
+        </div>
+    </div>
+
+    <!-- RÉSUMÉ COMPLET -->
+    <h2 style="margin-top: 40px; color: #1e293b;">
+        <span>📋</span> Résumé - Les 2 lignes à ajouter
+    </h2>
+
+    <div style="background: white; padding: 20px; border-radius: 8px; 
+                border: 2px solid #ef4444; margin: 20px 0;">
+        
+        <h3>Ligne 1 - Dans <code>&lt;head&gt;</code> :</h3>
+        <div class="code-block"><code>&lt;link rel="stylesheet" href="cookies-consent.css"&gt;</code></div>
+
+        <h3>Ligne 2 - Avant <code>&lt;/body&gt;</code> :</h3>
+        <div class="code-block"><code>&lt;script defer src="cookies-consent.js"&gt;&lt;/script&gt;</code></div>
+
+        <div class="note">
+            ✅ C'est tout! Votre système de cookies RGPD est prêt à fonctionner!
+        </div>
+    </div>
+
+    <!-- ORDRE D'IMPORTANCE -->
+    <h2 style="margin-top: 40px; color: #1e293b;">
+        <span>⚡</span> Pourquoi cet ordre?
+    </h2>
+
+    <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <ol>
+            <li>
+                <strong>CSS dans <code>&lt;head&gt;</code>:</strong><br>
+                Le navigateur charge les styles avant l'affichage du contenu.
+                Cela évite un "flash" non-stylisé (FOUC).
+            </li>
+            <li>
+                <strong>JS avant <code>&lt;/body&gt;</code>:</strong><br>
+                Le navigateur charge d'abord tout le DOM, puis exécute le JavaScript.
+                Avec <code>defer</code>, c'est asynchrone et non-bloquant.
+            </li>
+            <li>
+                <strong>Fichiers dans le même répertoire:</strong><br>
+                <code>index.html</code>, <code>cookies-consent.css</code>, 
+                <code>cookies-consent.js</code> tous au même niveau pour éviter 
+                les chemins relatifs complexes.
+            </li>
+        </ol>
+    </div>
+
+    <!-- EXEMPLE COMPLET -->
+    <h2 style="margin-top: 40px; color: #1e293b;">
+        <span>🎯</span> Exemple complet d'un index.html modifié
+    </h2>
+
+    <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <p>Voici à quoi ressemblerait votre fichier <strong>completemennt intégré</strong>:</p>
+        <div class="code-block"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Meca Auto30 Saint-Dionisy - Votre Expert Mécanique&lt;/title&gt;
+    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+    &lt;link rel="stylesheet" href="...font awesome..."&gt;
+    &lt;style&gt;
+        /* Vos styles existants */
+    &lt;/style&gt;
+    
+    <span class="added">&lt;!-- AJOUT 1️⃣ : Système de gestion des cookies RGPD --&gt;
+    &lt;link rel="stylesheet" href="cookies-consent.css"&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Votre contenu --&gt;
+    &lt;header&gt;...&lt;/header&gt;
+    &lt;main&gt;...&lt;/main&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+
+    &lt;!-- Vos scripts existants --&gt;
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+    
+    <span class="added">&lt;!-- AJOUT 2️⃣ : Initialisation du système de cookies --&gt;
+    &lt;script defer src="cookies-consent.js"&gt;&lt;/script&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;</code></div>
+    </div>
+
+    <!-- VÉRIFICATION -->
+    <h2 style="margin-top: 40px; color: #1e293b;">
+        <span>✅</span> Après l'intégration - Vérifications
+    </h2>
+
+    <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3>1. Vérifier que tout est en place</h3>
+        <ul>
+            <li>☑️ <code>cookies-consent.css</code> est dans le répertoire racine</li>
+            <li>☑️ <code>cookies-consent.js</code> est dans le répertoire racine</li>
+            <li>☑️ Les 2 lignes d'import sont dans <code>index.html</code></li>
+        </ul>
+
+        <h3 style="margin-top: 20px;">2. Tester dans le navigateur</h3>
+        <ul>
+            <li>☑️ Ouvrez votre site (F5 pour forcer le rechargement)</li>
+            <li>☑️ La bannière de cookies doit apparaître en bas 🍪</li>
+            <li>☑️ Testez les 3 boutons (Accepter, Refuser, Personnaliser)</li>
+        </ul>
+
+        <h3 style="margin-top: 20px;">3. Vérifier la sauvegarde (DevTools)</h3>
+        <ul>
+            <li>☑️ Appuyez sur F12 (DevTools)</li>
+            <li>☑️ Allez dans "Application" → "Local Storage"</li>
+            <li>☑️ Vous devriez voir <code>meca-auto-cookies-consent</code></li>
+            <li>☑️ Les préférences doivent être sauvegardées après chaque action</li>
+        </ul>
+
+        <h3 style="margin-top: 20px;">4. Tester sur mobile</h3>
+        <ul>
+            <li>☑️ F12 → Toggle device toolbar (ou Ctrl+Shift+M)</li>
+            <li>☑️ La bannière doit être responsive</li>
+            <li>☑️ Les boutons doivent être empilés verticalement</li>
+        </ul>
+    </div>
+
+    <!-- TROUBLESHOOTING -->
+    <h2 style="margin-top: 40px; color: #1e293b;">
+        <span>🐛</span> Troubleshooting courant
+    </h2>
+
+    <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        
+        <h3>❌ Je ne vois pas la bannière</h3>
+        <div class="warning">
+            <strong>Solution:</strong>
+            <ol>
+                <li>Vérifiez F12 → Network que <code>cookies-consent.css</code> et <code>cookies-consent.js</code> se chargent</li>
+                <li>Vérifiez F12 → Console pour les erreurs en rouge</li>
+                <li>Si le JS ne charge pas, vérifiez le chemin du fichier</li>
+                <li>Rechargez la page complètement: Ctrl+Shift+R ou Cmd+Shift+R</li>
+            </ol>
+        </div>
+
+        <h3 style="margin-top: 20px;">❌ La bannière s'affiche mais n'est pas stylisée</h3>
+        <div class="warning">
+            <strong>Solution:</strong>
+            <ol>
+                <li>Vérifiez que le CSS est chargé (F12 → Network)</li>
+                <li>Peut-être un conflit avec Tailwind CSS</li>
+                <li>Vérifiez que le chemin est correct: <code>href="cookies-consent.css"</code></li>
+            </ol>
+        </div>
+
+        <h3 style="margin-top: 20px;">❌ La bannière s'affiche à chaque rechargement</h3>
+        <div class="warning">
+            <strong>Solution:</strong>
+            <ol>
+                <li>Vérifiez F12 → Application → Local Storage</li>
+                <li>Vous devriez voir <code>meca-auto-cookies-consent</code></li>
+                <li>Si ce n'est pas là, le JS ne s'exécute pas</li>
+                <li>Vérifiez F12 → Console pour les erreurs</li>
+            </ol>
+        </div>
+
+        <h3 style="margin-top: 20px;">❌ Les imports HTML "404 Not Found"</h3>
+        <div class="warning">
+            <strong>Solution:</strong>
+            <ol>
+                <li>Assurez-vous que <code>cookies-consent.css</code> et <code>cookies-consent.js</code> 
+                    sont dans le même répertoire que <code>index.html</code></li>
+                <li>Vérifiez les noms: pas d'espaces, pas d'accents, respect de la casse</li>
+                <li>Si dans un sous-dossier: modifiez le chemin: <code>href="assets/cookies-consent.css"</code></li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- PROCHAINES ÉTAPES -->
+    <h2 style="margin-top: 40px; color: #1e293b;">
+        <span>🚀</span> Prochaines étapes recommandées
+    </h2>
+
+    <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <ol>
+            <li>
+                <strong>Mettre à jour votre politique de confidentialité</strong><br>
+                Ajoutez une section "Cookies" dans <code>politique-confidentialite.html</code>
+                expliquant quels cookies vous utilisez et pourquoi.
+            </li>
+            <li>
+                <strong>Implémenter le chargement conditionnel des analytics</strong><br>
+                Si vous utilisez Google Analytics, ne chargez le script QUE si l'utilisateur 
+                a accepté les analytics.
+            </li>
+            <li>
+                <strong>Tester la conformité RGPD</strong><br>
+                Assurez-vous que aucun service externe n'est chargé 
+                avant le consentement explicite.
+            </li>
+            <li>
+                <strong>Supprimer les fichiers d'exemple</strong><br>
+                Une fois intégré, vous pouvez supprimer:
+                <ul>
+                    <li>COOKIES-INTEGRATION.html</li>
+                    <li>EXAMPLE-INTEGRATION.html (ce fichier)</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- CTA FINAL -->
+    <div style="background: linear-gradient(135deg, #ef4444, #dc2626); 
+                color: white; padding: 30px; border-radius: 8px; 
+                margin: 40px 0; text-align: center;">
+        <h2 style="color: white; margin-top: 0;">
+            🎉 Vous êtes prêt!
+        </h2>
+        <p style="font-size: 18px; margin: 10px 0;">
+            Intégrez les 2 lignes dans votre <code style="background: rgba(255,255,255,0.2); padding: 4px 8px;">index.html</code> 
+            et ouvrez votre site.
+        </p>
+        <p style="color: rgba(255,255,255,0.9); margin-bottom: 0;">
+            Votre bannière de cookies RGPD conforme sera active immédiatement! ✅
+        </p>
+    </div>
+
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid #e5e7eb;">
+
+    <p style="text-align: center; color: #999;">
+        📚 Documentation complète disponible dans:<br>
+        <code>README.md</code> (vue d'ensemble)  |  
+        <code>COOKIES-INTEGRATION.html</code> (guide détaillé)
+    </p>
+</body>
+</html>
